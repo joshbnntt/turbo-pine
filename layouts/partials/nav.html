@@ -1,0 +1,55 @@
+<nav class="shadow w-full p-4 mb-2 flex justify-between">
+    <div>
+        <a href="/" class="text-black hover:text-blue-800">
+            <h1>{{ .Site.Title }}</h1>
+        </a>
+    </div>
+    <div>
+        <div id="nav-menu" :class="{'nav-open': !sideNavClosed}">
+            <button 
+                @click="sideNavClosed = !sideNavClosed"
+                x-show="!sideNavClosed"
+            > 
+                <svg class="fill-current text-white inline-block h-6 w-6 absolute top-0 right-0 mt-4 mr-4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <ul id="nav-items" class="hidden md:flex">
+                {{ $currentPage := . }}
+                <li>
+                    <a href="/" class="text-blue-500 hover:text-blue-800">
+                        <span>Home</span>
+                    </a>
+                </li>
+                {{ range .Site.Menus.main }}
+                    {{ if .HasChildren }}
+                        <li class="mr-6 {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                            <a href="#" class="text-blue-500 hover:text-blue-800">
+                                {{ .Pre }}
+                                <span>{{ .Name }}</span>
+                            </a>
+                        </li>
+                        <ul class="sub-menu">
+                            {{ range .Children }}
+                                <li class="mr-6 {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                                    <a href="{{ .URL }}" class="text-blue-500 hover:text-blue-800">{{ .Name }}</a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    {{ else }}
+                        <li>
+                            <a href="{{ .URL }}" class="text-blue-500 hover:text-blue-800">
+                                {{ .Pre }}
+                                <span>{{ .Name }}</span>
+                            </a>
+                        </li>
+                    {{ end }}
+                {{ end }}
+            </ul>
+        </div>
+        <button 
+            class="md:hidden" 
+            @click="sideNavClosed = !sideNavClosed"
+        > 
+            <svg class="fill-current text-blue-500 inline-block h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+</nav>

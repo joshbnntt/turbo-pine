@@ -1,0 +1,16 @@
+name = "Turbo-Pine"
+license = "MIT"
+
+description = "A simple Hugo theme using Tailwindcss, Alpinejs, and Turbolinks"
+
+# Hugo version
+min_version = 0.40
+
+[author]
+  name = "Joshua Bennett"
+
+# If porting an existing theme
+[original]
+  name = ""
+  homepage = ""
+  repo = ""

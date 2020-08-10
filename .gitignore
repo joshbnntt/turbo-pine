@@ -1,0 +1,17 @@
+### Node ###
+# Logs
+/assets/logs
+/assets/*.log
+/assets/npm-debug.log*
+/assets/yarn-debug.log*
+/assets/yarn-error.log*
+/assets/lerna-debug.log*
+
+# Dependency directories
+/assets/node_modules/*
+
+# dotenv environment variables file
+.env
+.env.test
+/assets/.env
+/assets/.env.test

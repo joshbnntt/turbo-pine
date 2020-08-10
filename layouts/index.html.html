@@ -1,0 +1,48 @@
+
+{{ define "main" }}
+<main aria-role="main">
+  <header class="homepage-header">
+    <h1>{{.Title}}</h1>
+    {{ with .Params.subtitle }}
+    <span class="subtitle">{{.}}</span>
+    {{ end }}
+  </header>
+  <div class="homepage-content">
+    <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+    {{.Content}}
+  </div>
+  <div>
+    <ul>
+      {{ range .Paginator.Pages }}
+        {{ .Render "li" }}
+      {{ end }}
+    </ul>
+
+  {{ if gt .Paginator.TotalPages 1 }}
+  <nav class="paginate-container">
+    <div class="pagination">
+      <ul class="grid grid-cols-{{add .Paginator.TotalPages 2}} text-center">
+        {{ if .Paginator.HasPrev }}
+        <a href="{{ .Paginator.Prev.URL }}" class="previous_page col-start-1 border border-1 p-2 font-semibold mr-1">Prev</a>
+        {{ else }}
+        <span class="previous_page disabled col-start-1 border border-1 p-2 text-gray-400 mr-1">Prev</span>
+        {{ end }}
+
+        {{ range .Paginator.Pagers }}
+          <a href="{{ .URL }}" class="border border-1 p-2 mr-1">
+            {{ .PageNumber }}
+          </a>
+        {{ end }}
+
+        {{ if .Paginator.HasNext }}
+        <a href="{{ .Paginator.Next.URL }}" class="next_page col-end-auto border border-1 p-2 font-semibold">Next</a>
+        {{ else }}
+        <span class="next_page disabled col-end-auto border border-1 p-2 text-gray-400">Next</span>
+        {{ end }}
+      </ul>
+    </div>
+  </nav>
+  {{ end }}
+  </div>
+</main>
+{{ end }}

@@ -1,0 +1,46 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+ul#nav-items > li {
+    @apply mr-6;
+}
+
+.noscroll { 
+    overflow: hidden;
+}
+#nav-menu {
+    @apply transition;
+}
+.nav-open {
+    /* @apply flex flex-col items-center justify-center absolute top-0 left-0 bg-black h-screen w-screen; */
+    @apply flex flex-col items-center justify-center fixed top-0 left-0  right-0 bottom-0 bg-black h-screen w-screen transition;
+    overflow-y: scroll;
+}
+
+.nav-open > ul {
+    @apply flex flex-col items-center justify-center;
+}
+
+.nav-open > ul> li > a {
+    @apply text-white;
+}
+
+article#content {
+
+}
+
+
+article#content h1, article#content h2, article#content h3  {
+    @apply font-bold;
+}
+
+article#content h1 {
+    @apply text-xl;
+}
+
+article#content h2 {
+    @apply text-lg;
+}
