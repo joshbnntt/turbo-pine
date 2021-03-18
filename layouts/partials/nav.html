@@ -1,14 +1,20 @@
-<nav class="shadow w-full p-4 mb-2 flex justify-between">
+<nav class="shadow w-full p-4 mb-2 flex justify-between" 
+    data-controller="nav-menu" 
+    data-nav-menu-opened-value="false"
+    data-nav-menu-open-class="nav-open"
+    data-nav-menu-body_open-class="no-scroll">
     <div>
         <a href="/" class="text-black hover:text-blue-800">
             <h1>{{ .Site.Title }}</h1>
         </a>
     </div>
     <div>
-        <div id="nav-menu" :class="{'nav-open': !sideNavClosed}">
+        <div id="nav-menu"
+            data-nav-menu-target="navmenu"
+            >
             <button 
-                @click="sideNavClosed = !sideNavClosed"
-                x-show="!sideNavClosed"
+                data-action="click->nav-menu#toggleOpen"
+                data-nav-menu-target="toggleButton"
             > 
                 <svg class="fill-current text-white inline-block h-6 w-6 absolute top-0 right-0 mt-4 mr-4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -47,7 +53,7 @@
         </div>
         <button 
             class="md:hidden" 
-            @click="sideNavClosed = !sideNavClosed"
+            data-action="click->nav-menu#toggleOpen"
         > 
             <svg class="fill-current text-blue-500 inline-block h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>

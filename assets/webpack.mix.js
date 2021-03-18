@@ -1,5 +1,18 @@
 let mix = require('laravel-mix');
 
+const webpack = require('webpack')
+
+mix.options({
+    legacyNodePolyfills: true
+});
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.ProvidePlugin({
+               process: 'process/browser',
+        }),
+    ]
+})
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
